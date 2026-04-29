@@ -185,6 +185,9 @@ body {
     flex: 1;
     justify-content: center;
   }
+  .hero-arrow {
+    display: none !important;
+  }
   .nosotros-badges {
     flex-wrap: wrap !important;
     gap: 14px 20px !important;

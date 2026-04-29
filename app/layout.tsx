@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   description: "Estudio jurídico en Montevideo, Uruguay. Especialistas en Derecho Administrativo, Previsión Social y Escribanía para personas y empresas.",
   keywords: ["derecho administrativo", "previsión social", "abogado uruguay", "estudio jurídico", "BPS", "escribanía"],
   authors: [{ name: "Graciela Ruocco & Asociados" }],
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
     title: "Graciela Ruocco & Asociados",
     description: "Estudio jurídico especializado en Derecho Administrativo y Previsión Social",
