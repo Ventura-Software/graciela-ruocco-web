@@ -28,7 +28,7 @@ The contact form is now fully integrated with **Resend** for email delivery. Fol
 
 ```bash
 RESEND_API_KEY=re_abc123def456...
-CONTACT_EMAIL=contacto@ruoccoasociados.com.uy
+CONTACT_EMAIL=gruoccocosta@gmail.com
 ```
 
 3. Save the file
@@ -66,6 +66,7 @@ To test:
 ### What the Email Looks Like
 
 The email will be beautifully formatted with:
+
 - Navy header with "Nueva Consulta Web"
 - Badge with the selected service area
 - All form fields clearly labeled
@@ -77,7 +78,7 @@ The email will be beautifully formatted with:
 
 ## 🌐 Production Setup (Custom Domain)
 
-For production, you'll want emails to come from YOUR domain (e.g., `no-reply@ruoccoasociados.com.uy`).
+For production, you'll want emails to come from YOUR domain (e.g., `gruoccocosta@gmail.com`).
 
 ### Step 1: Verify Your Domain in Resend
 
@@ -91,6 +92,7 @@ For production, you'll want emails to come from YOUR domain (e.g., `no-reply@ruo
 Add these records to your domain provider (wherever you bought the domain):
 
 **Example records from Resend:**
+
 ```
 Type: TXT
 Name: @
@@ -110,10 +112,11 @@ Value: v=DMARC1; p=none
 Once domain is verified, update `/app/api/contact/route.ts`:
 
 ```typescript
-from: 'Contacto Web <no-reply@ruoccoasociados.com.uy>',
+from: 'Contacto Web <gruoccocosta@gmail.com>',
 ```
 
 Replace the current placeholder:
+
 ```typescript
 from: 'Graciela Ruocco Web <onboarding@resend.dev>',
 ```
@@ -148,6 +151,7 @@ View email activity at [resend.com/emails](https://resend.com/emails):
 ### Email Notifications
 
 Set up notifications in Resend:
+
 1. Go to Settings → Notifications
 2. Enable webhook for failed deliveries
 3. Get notified if emails bounce
@@ -161,11 +165,13 @@ Set up notifications in Resend:
 **Possible causes:**
 
 1. **Invalid API Key**
+
    - Check `.env.local` has correct key
    - Key should start with `re_`
    - No spaces before/after
 
 2. **Environment variables not loaded**
+
    - Restart dev server after changing `.env.local`
    - Run `npm run dev` again
 
@@ -190,11 +196,13 @@ Set up notifications in Resend:
 ## 💰 Resend Pricing
 
 **Free Plan** (Perfect for this site):
+
 - 3,000 emails/month
 - 100 emails/day
 - All features included
 
 **Pro Plan** ($20/month):
+
 - 50,000 emails/month
 - Unlimited daily sending
 - Custom domains
@@ -209,6 +217,7 @@ For a law firm, the **free plan is more than enough**.
 If you prefer SendGrid instead:
 
 1. Install SendGrid:
+
 ```bash
 npm install @sendgrid/mail
 ```
@@ -216,6 +225,7 @@ npm install @sendgrid/mail
 2. Replace `/app/api/contact/route.ts` with SendGrid code
 3. Get API key from sendgrid.com
 4. Update `.env.local`:
+
 ```bash
 SENDGRID_API_KEY=SG.xxx
 ```
@@ -260,10 +270,11 @@ html: `
   <div style="...">
     ...
   </div>
-`
+`;
 ```
 
 Current template includes:
+
 - Navy header
 - Gold accents
 - Service area badge
@@ -276,10 +287,12 @@ Current template includes:
 ## 📞 Support
 
 **Resend Issues:**
+
 - Docs: [resend.com/docs](https://resend.com/docs)
 - Support: support@resend.com
 
 **Integration Issues:**
+
 - Check the API route: `/app/api/contact/route.ts`
 - Check the form: `/components/Contacto.tsx`
 - Console errors in browser DevTools

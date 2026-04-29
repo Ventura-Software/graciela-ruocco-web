@@ -117,13 +117,14 @@ Agregar las siguientes imágenes en `/public`:
 3. Agregar la API key a `.env.local`:
    ```bash
    RESEND_API_KEY=re_tu_api_key_aqui
-   CONTACT_EMAIL=contacto@ruoccoasociados.com.uy
+   CONTACT_EMAIL=gruoccocosta@gmail.com
    ```
 4. Reiniciar el servidor: `npm run dev`
 
 **📖 Guía completa:** Ver `EMAIL_SETUP_GUIDE.md` para instrucciones paso a paso.
 
 **Características incluidas:**
+
 - ✅ Email hermosamente formateado con los colores del sitio
 - ✅ Validación anti-spam (honeypot)
 - ✅ Estados de carga y error
@@ -134,7 +135,7 @@ Agregar las siguientes imágenes en `/public`:
 
 Actualizar en `/components/Contacto.tsx` y `/components/Footer.tsx`:
 
-- Email real (actualmente: `contacto@ruoccoasociados.com.uy`)
+- Email real (actualmente: `gruoccocosta@gmail.com`)
 - Teléfono real (actualmente: `+598 2900 1234`)
 - Dirección completa
 - URL de LinkedIn del estudio (si existe)
@@ -148,8 +149,9 @@ npm install @next/third-parties
 ```
 
 En `app/layout.tsx`:
+
 ```typescript
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export default function RootLayout({ children }) {
   return (
@@ -159,17 +161,19 @@ export default function RootLayout({ children }) {
         <GoogleAnalytics gaId="G-XXXXXXXXXX" />
       </body>
     </html>
-  )
+  );
 }
 ```
 
 ### 5. Dominio y Deploy
 
 1. **Comprar dominio** (sugerencias):
+
    - `ruoccoasociados.com.uy`
    - `gracielaruocco.com.uy`
 
 2. **Deploy en Vercel:**
+
    ```bash
    npm install -g vercel
    vercel

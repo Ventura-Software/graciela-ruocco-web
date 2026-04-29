@@ -140,7 +140,7 @@ const Contacto: React.FC = () => {
                 maxWidth: 440,
               }}
             >
-              ¿Su empresa enfrenta un desafío legal en materia administrativa o previsional?
+              ¿Enfrenta un desafío legal en materia administrativa, previsional o notarial?
               Contáctenos y uno de nuestros especialistas se comunicará con usted a la
               brevedad.
             </p>
@@ -154,10 +154,10 @@ const Contacto: React.FC = () => {
               }}
             >
               {[
-                { icon: IconMail, l: 'Email', v: 'contacto@ruoccoasociados.com.uy' },
-                { icon: IconPhone, l: 'Teléfono', v: '+598 2900 1234' },
-                { icon: IconPin, l: 'Ubicación', v: 'Montevideo, Uruguay' },
-                { icon: IconClock, l: 'Horario', v: 'Lun a Vie · 9:00 – 18:00' },
+                { icon: IconMail, l: 'Email', v: 'gruoccocosta@gmail.com' },
+                { icon: IconPhone, l: 'Teléfono', v: '+598 2902 44 72' },
+                { icon: IconPin, l: 'Ubicación', v: 'Pza. Independencia 838/402, Montevideo' },
+                { icon: IconClock, l: 'Horario', v: 'Lun a Vie · 11:00 – 17:00' },
               ].map((c, i) => {
                 const Ic = c.icon;
                 return (
@@ -304,8 +304,8 @@ const Contacto: React.FC = () => {
                     <input {...field('nombre')} placeholder="Su nombre" />
                   </div>
                   <div>
-                    <label style={label}>Empresa</label>
-                    <input {...field('empresa')} placeholder="Nombre de su empresa" />
+                    <label style={label}>Empresa (opcional)</label>
+                    <input {...field('empresa')} placeholder="Su empresa (si aplica)" />
                   </div>
                   <div>
                     <label style={label}>Email *</label>

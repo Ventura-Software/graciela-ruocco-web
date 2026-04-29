@@ -12,12 +12,12 @@ const REASONS: Reason[] = [
   {
     n: '01',
     title: 'Especialización en las Áreas Clave',
-    desc: 'Enfocados exclusivamente en Derecho Administrativo, Previsión Social y Servicios de Escribanía para empresas. No somos generalistas: somos especialistas.',
+    desc: 'Enfocados exclusivamente en Derecho Administrativo, Previsión Social y Servicios de Escribanía. No somos generalistas: somos especialistas en las materias que importan.',
   },
   {
     n: '02',
     title: 'Atención Personalizada',
-    desc: 'Cada empresa tiene necesidades únicas. Trabajamos de cerca con cada cliente, comprendiendo su realidad antes de proponer una estrategia legal.',
+    desc: 'Cada cliente tiene necesidades únicas. Trabajamos de cerca con cada uno, comprendiendo su realidad antes de proponer una estrategia legal.',
   },
   {
     n: '03',
@@ -188,8 +188,8 @@ const PorQue: React.FC = () => (
             color: 'rgba(255,255,255,0.65)',
           }}
         >
-          Más de dos décadas acompañando a las empresas uruguayas, basadas en resultados
-          concretos y transparencia total.
+          Más de dos décadas acompañando a nuestros clientes, basados en resultados concretos
+          y transparencia total.
         </p>
       </div>
 

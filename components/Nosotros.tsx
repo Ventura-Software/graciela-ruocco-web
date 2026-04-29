@@ -16,15 +16,9 @@ const TEAM: TeamMember[] = [
   {
     name: 'Graciela Ruocco',
     role: 'Catedrática de Derecho Administrativo',
-    bio: 'Doctora en Derecho con cátedra universitaria en Derecho Administrativo. Más de dos décadas asesorando a empresas en procedimientos y regulaciones estatales.',
+    bio: 'Profesora Titular de Posgrado de Derecho Administrativo de la Facultad de Derecho de la Universidad Católica del Uruguay. Profesora Titular de Derecho Público de la Facultad de Derecho de la Universidad de la República. Directora del Instituto de Derecho Administrativo de la misma universidad (2021-2023). Máster en Derecho con énfasis en Derecho Constitucional y Derechos Humanos. Miembro del Foro Iberoamericano de Derecho Administrativo, de la Asociación de Derecho Público del Mercosur, de la Red Internacional de Bienes Públicos, del Instituto Internacional de Derecho Administrativo y del Centro Iberoamericano de Estudios de Derecho Público y Tecnología. Abogada I de la Dirección Jurídica del Poder Legislativo (1994-2019).',
     img: '/graciela_ruocco.jpg',
     lead: true,
-  },
-  {
-    name: 'Ariel Moller',
-    role: 'Especialista en Previsión Social',
-    bio: 'Abogado especializado en seguridad social y previsión. Amplia experiencia en asesoramiento a empresas sobre aportes, jubilaciones y contingencias laborales.',
-    img: '/ariel_moller.jpg',
   },
   {
     name: 'Victoria Frigerio Ruocco',
@@ -175,7 +169,7 @@ const Nosotros: React.FC = () => (
               letterSpacing: '-0.02em',
             }}
           >
-            Experiencia y Profesionalismo al Servicio de su{' '}
+            Experiencia y Profesionalismo al Servicio de{' '}
             <span
               style={{
                 fontStyle: 'italic',
@@ -183,7 +177,7 @@ const Nosotros: React.FC = () => (
                 fontWeight: 500,
               }}
             >
-              Empresa
+              Cada Cliente
             </span>
           </h2>
         </div>
@@ -244,17 +238,14 @@ const Nosotros: React.FC = () => (
         <div className="team-lead" style={{ gridColumn: 'span 6' }}>
           <TeamCard m={TEAM[0]} />
         </div>
-        <div className="team-half" style={{ gridColumn: 'span 3' }}>
+        <div className="team-half" style={{ gridColumn: 'span 2' }}>
           <TeamCard m={TEAM[1]} />
         </div>
-        <div className="team-half" style={{ gridColumn: 'span 3' }}>
+        <div className="team-half" style={{ gridColumn: 'span 2' }}>
           <TeamCard m={TEAM[2]} />
         </div>
-        <div className="team-half" style={{ gridColumn: 'span 3' }}>
+        <div className="team-half" style={{ gridColumn: 'span 2' }}>
           <TeamCard m={TEAM[3]} />
-        </div>
-        <div className="team-half" style={{ gridColumn: 'span 3' }}>
-          <TeamCard m={TEAM[4]} />
         </div>
       </div>
     </div>

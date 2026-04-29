@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -10,16 +10,13 @@ export async function POST(request: Request) {
 
     // Honeypot check - if website field is filled, it's a bot
     if (website) {
-      return NextResponse.json(
-        { error: 'Spam detected' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Spam detected" }, { status: 400 });
     }
 
     // Validate required fields
     if (!nombre || !email || !mensaje) {
       return NextResponse.json(
-        { error: 'Campos requeridos: nombre, email, mensaje' },
+        { error: "Campos requeridos: nombre, email, mensaje" },
         { status: 400 }
       );
     }
@@ -27,16 +24,13 @@ export async function POST(request: Request) {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Email inválido' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Email inválido" }, { status: 400 });
     }
 
     // Send email using Resend
-    const data = await resend.emails.send({
-      from: 'Graciela Ruocco Web <onboarding@resend.dev>', // Will change to your domain after verification
-      to: [process.env.CONTACT_EMAIL || 'contacto@ruoccoasociados.com.uy'],
+    const { data, error: resendError } = await resend.emails.send({
+      from: "Graciela Ruocco Web <onboarding@resend.dev>", // Will change to your domain after verification
+      to: [process.env.CONTACT_EMAIL || "gruoccocosta@gmail.com"],
       replyTo: email,
       subject: `Nueva consulta de ${nombre} - ${area}`,
       html: `
@@ -127,12 +121,16 @@ export async function POST(request: Request) {
                 <div class="field-value">${nombre}</div>
               </div>
 
-              ${empresa ? `
+              ${
+                empresa
+                  ? `
                 <div class="field">
                   <div class="field-label">Empresa</div>
                   <div class="field-value">${empresa}</div>
                 </div>
-              ` : ''}
+              `
+                  : ""
+              }
 
               <div class="field">
                 <div class="field-label">Email</div>
@@ -141,19 +139,23 @@ export async function POST(request: Request) {
                 </div>
               </div>
 
-              ${telefono ? `
+              ${
+                telefono
+                  ? `
                 <div class="field">
                   <div class="field-label">Teléfono</div>
                   <div class="field-value">
                     <a href="tel:${telefono}" style="color: #C9A96E; text-decoration: none;">${telefono}</a>
                   </div>
                 </div>
-              ` : ''}
+              `
+                  : ""
+              }
 
               <div class="field">
                 <div class="field-label">Mensaje</div>
                 <div class="message-box">
-                  ${mensaje.replace(/\n/g, '<br>')}
+                  ${mensaje.replace(/\n/g, "<br>")}
                 </div>
               </div>
 
@@ -161,7 +163,11 @@ export async function POST(request: Request) {
                 <p>Este mensaje fue enviado desde el formulario de contacto de <strong>gracielaruocco.com.uy</strong></p>
                 <p style="margin-top: 10px;">
                   <a href="mailto:${email}" style="color: #C9A96E; text-decoration: none; margin: 0 10px;">Responder</a>
-                  ${telefono ? `| <a href="tel:${telefono}" style="color: #C9A96E; text-decoration: none; margin: 0 10px;">Llamar</a>` : ''}
+                  ${
+                    telefono
+                      ? `| <a href="tel:${telefono}" style="color: #C9A96E; text-decoration: none; margin: 0 10px;">Llamar</a>`
+                      : ""
+                  }
                 </p>
               </div>
             </div>
@@ -170,15 +176,18 @@ export async function POST(request: Request) {
       `,
     });
 
+    if (resendError) {
+      throw new Error(resendError.message);
+    }
+
     return NextResponse.json(
-      { success: true, messageId: data.id },
+      { success: true, messageId: data?.id },
       { status: 200 }
     );
-
   } catch (error: any) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: error.message || 'Error al enviar el mensaje' },
+      { error: error.message || "Error al enviar el mensaje" },
       { status: 500 }
     );
   }

@@ -10,20 +10,20 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
-    q: '¿Cuáles son las obligaciones previsionales de una empresa en Uruguay?',
-    a: 'Las empresas en Uruguay deben realizar aportes al BPS (Banco de Previsión Social) sobre las remuneraciones de sus trabajadores, incluyendo aportes patronales, personales y contribuciones especiales. Asesoramos en el correcto cumplimiento y optimización de esta carga.',
+    q: '¿Cuáles son las obligaciones previsionales ante el BPS en Uruguay?',
+    a: 'En Uruguay, los empleadores deben realizar aportes al BPS (Banco de Previsión Social) sobre las remuneraciones de sus trabajadores, incluyendo aportes patronales, personales y contribuciones especiales. Asesoramos tanto a empresas como a personas en el correcto cumplimiento y optimización de esta carga.',
   },
   {
-    q: '¿Qué servicios de escribanía necesita una empresa habitualmente?',
-    a: 'Las empresas requieren servicios notariales para la constitución de sociedades, reformas de estatutos, poderes, compraventas, contratos y certificaciones de firma. Cubrimos toda la documentación corporativa necesaria.',
+    q: '¿Qué servicios de escribanía suelen necesitar los clientes del estudio?',
+    a: 'Nuestros clientes requieren servicios notariales para la constitución de sociedades, reformas de estatutos, poderes, compraventas de inmuebles y automotores, contratos, cesiones y certificaciones de firma. Cubrimos toda la documentación notarial necesaria.',
   },
   {
-    q: '¿Cómo puedo impugnar una resolución administrativa que afecta a mi empresa?',
+    q: '¿Cómo puedo impugnar una resolución administrativa?',
     a: 'En Uruguay existen recursos administrativos (revocación, jerárquico, de anulación) y la acción de nulidad ante el TCA. Evaluamos cada caso y diseñamos la estrategia legal más adecuada según plazos y probabilidades.',
   },
   {
-    q: '¿Cuándo conviene contratar una consultoría legal permanente para mi empresa?',
-    a: 'Cuando su empresa tiene operaciones regulares con el Estado, empleados bajo distintos regímenes, contratos frecuentes o riesgos regulatorios, una consultoría permanente previene conflictos y reduce costos a largo plazo.',
+    q: '¿Cuándo conviene contar con asesoramiento legal continuo?',
+    a: 'Cuando usted o su empresa tiene relaciones frecuentes con el Estado, empleados bajo distintos regímenes, contratos habituales o riesgos regulatorios, un asesoramiento legal continuo previene conflictos y reduce costos a largo plazo.',
   },
   {
     q: '¿Cómo es el proceso para comenzar a trabajar con el estudio?',
@@ -84,8 +84,8 @@ const Faq: React.FC = () => {
               color: 'var(--slate)',
             }}
           >
-            Respuestas claras a las consultas más comunes que recibimos de empresas en
-            Uruguay.
+            Respuestas claras a las consultas más frecuentes que recibimos de nuestros
+            clientes.
           </p>
         </div>
 

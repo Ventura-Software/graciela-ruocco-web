@@ -129,7 +129,7 @@ const Hero: React.FC = () => {
             Especializado
           </span>
           <br />
-          para Empresas
+          personal y para empresas
         </h1>
 
         <p
@@ -144,8 +144,8 @@ const Hero: React.FC = () => {
             fontWeight: 300,
           }}
         >
-          Expertos en Derecho Administrativo y Previsión Social. Acompañamos a las empresas
-          uruguayas en cada desafío legal con rigor académico y atención personalizada.
+          Expertos en Derecho Administrativo y Previsión Social. Acompañamos a nuestros clientes
+          en cada desafío legal con rigor académico y atención personalizada.
         </p>
 
         <div
@@ -228,8 +228,8 @@ const Hero: React.FC = () => {
         >
           {[
             { v: '20+', l: 'Años de Experiencia' },
-            { v: '5', l: 'Especialistas en el Equipo' },
-            { v: '100%', l: 'Enfoque Empresarial' },
+            { v: '4', l: 'Áreas de Especialidad' },
+            { v: '100%', l: 'Atención Personalizada' },
           ].map((s, i) => (
             <div
               key={i}
