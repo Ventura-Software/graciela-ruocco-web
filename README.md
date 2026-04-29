@@ -1,6 +1,6 @@
 # Graciela Ruocco & Asociados - Landing Web
 
-Landing page institucional para el estudio jurídico Graciela Ruocco & Asociados, especializado en Derecho Administrativo y Previsión Social en Montevideo, Uruguay.
+Página institucional para el estudio jurídico Graciela Ruocco & Asociados, especializado en Derecho Administrativo y Previsión Social en Montevideo, Uruguay.
 
 ## 🚀 Stack Tecnológico
 
