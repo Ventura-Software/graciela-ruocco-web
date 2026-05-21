@@ -62,7 +62,7 @@ const Footer: React.FC = () => (
           </p>
           <div style={{ marginTop: 24, display: "flex", gap: 10 }}>
             <a
-              href="mailto:gruoccocosta@gmail.com"
+              href="mailto:gracielaruoccoyasociados@gmail.com"
               style={{
                 width: 36,
                 height: 36,
@@ -95,7 +95,7 @@ const Footer: React.FC = () => (
             links: [
               { l: "Derecho Administrativo", h: "#servicios" },
               { l: "Escribanía", h: "#servicios" },
-              { l: "Previsión Social", h: "#servicios" },
+              { l: "Previsión Social y Recursos Humanos", h: "#servicios" },
               { l: "Consultoría Legal", h: "#servicios" },
             ],
           },
@@ -112,8 +112,8 @@ const Footer: React.FC = () => (
             title: "Contacto",
             links: [
               {
-                l: "gruoccocosta@gmail.com",
-                h: "mailto:gruoccocosta@gmail.com",
+                l: "gracielaruoccoyasociados@gmail.com",
+                h: "mailto:gracielaruoccoyasociados@gmail.com",
               },
               { l: "+598 2902 44 72", h: "tel:+59829024472" },
               {
@@ -178,7 +178,8 @@ const Footer: React.FC = () => (
           © 2026 Graciela Ruocco & Asociados · Todos los derechos reservados.
         </div>
         <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)" }}>
-          Derecho Administrativo · Previsión Social · Escribanía · Uruguay
+          Derecho Administrativo · Previsión Social · Recursos Humanos ·
+          Escribanía · Uruguay
         </div>
       </div>
     </div>

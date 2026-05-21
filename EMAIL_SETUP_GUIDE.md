@@ -28,7 +28,7 @@ The contact form is now fully integrated with **Resend** for email delivery. Fol
 
 ```bash
 RESEND_API_KEY=re_abc123def456...
-CONTACT_EMAIL=gruoccocosta@gmail.com
+CONTACT_EMAIL=gracielaruoccoyasociados@gmail.com
 ```
 
 3. Save the file
@@ -78,7 +78,7 @@ The email will be beautifully formatted with:
 
 ## 🌐 Production Setup (Custom Domain)
 
-For production, you'll want emails to come from YOUR domain (e.g., `gruoccocosta@gmail.com`).
+For production, you'll want emails to come from YOUR domain (e.g., `gracielaruoccoyasociados@gmail.com`).
 
 ### Step 1: Verify Your Domain in Resend
 
@@ -112,7 +112,7 @@ Value: v=DMARC1; p=none
 Once domain is verified, update `/app/api/contact/route.ts`:
 
 ```typescript
-from: 'Contacto Web <gruoccocosta@gmail.com>',
+from: 'Contacto Web <gracielaruoccoyasociados@gmail.com>',
 ```
 
 Replace the current placeholder:

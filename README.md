@@ -117,7 +117,7 @@ Agregar las siguientes imágenes en `/public`:
 3. Agregar la API key a `.env.local`:
    ```bash
    RESEND_API_KEY=re_tu_api_key_aqui
-   CONTACT_EMAIL=gruoccocosta@gmail.com
+   CONTACT_EMAIL=gracielaruoccoyasociados@gmail.com
    ```
 4. Reiniciar el servidor: `npm run dev`
 
@@ -135,7 +135,7 @@ Agregar las siguientes imágenes en `/public`:
 
 Actualizar en `/components/Contacto.tsx` y `/components/Footer.tsx`:
 
-- Email real (actualmente: `gruoccocosta@gmail.com`)
+- Email real (actualmente: `gracielaruoccoyasociados@gmail.com`)
 - Teléfono real (actualmente: `+598 2900 1234`)
 - Dirección completa
 - URL de LinkedIn del estudio (si existe)

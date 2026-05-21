@@ -144,9 +144,9 @@ const Hero: React.FC = () => {
             fontWeight: 300,
           }}
         >
-          Expertos en Derecho Administrativo y Previsión Social. Acompañamos a
-          nuestros clientes en cada desafío legal con rigor académico y atención
-          personalizada.
+          Expertos en Derecho Administrativo, Previsión Social y Recursos
+          Humanos. Acompañamos a nuestros clientes en cada desafío legal con
+          rigor académico y atención personalizada.
         </p>
 
         <div

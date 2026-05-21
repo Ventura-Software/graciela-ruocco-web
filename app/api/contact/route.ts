@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     // Send email using Resend
     const { data, error: resendError } = await resend.emails.send({
       from: "Graciela Ruocco Web <onboarding@resend.dev>", // Will change to your domain after verification
-      to: [process.env.CONTACT_EMAIL || "gruoccocosta@gmail.com"],
+      to: [process.env.CONTACT_EMAIL || "gracielaruoccoyasociados@gmail.com"],
       replyTo: email,
       subject: `Nueva consulta de ${nombre} - ${area}`,
       html: `

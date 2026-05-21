@@ -47,7 +47,7 @@ const SERVICES: Service[] = [
   },
   {
     icon: IconShield,
-    title: "Asesoramiento en Previsión Social",
+    title: "Asesoramiento en Previsión Social y Recursos Humanos",
     tag: "Área Principal",
     desc: "Orientamos a nuestros clientes en el cumplimiento de sus obligaciones ante el BPS y organismos previsionales, incluyendo aportes, contingencias laborales y jubilaciones.",
     bullets: [
@@ -61,7 +61,12 @@ const SERVICES: Service[] = [
     title: "Consultoría Legal Personalizada",
     tag: "Acompañamiento Integral",
     desc: "Asesoramiento legal integral en las materias de especialidad del estudio, con atención personalizada y dedicación a cada caso.",
-    bullets: ["Derecho Administrativo", "Previsión Social", "Escribanía"],
+    bullets: [
+      "Derecho Administrativo",
+      "Previsión Social",
+      "Recursos Humanos",
+      "Escribanía",
+    ],
   },
 ];
 

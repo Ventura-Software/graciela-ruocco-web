@@ -19,13 +19,22 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Graciela Ruocco & Asociados — Asesoramiento Legal Especializado",
-  description: "Estudio jurídico en Montevideo, Uruguay. Especialistas en Derecho Administrativo, Previsión Social y Escribanía para personas y empresas.",
-  keywords: ["derecho administrativo", "previsión social", "abogado uruguay", "estudio jurídico", "BPS", "escribanía"],
+  description:
+    "Estudio jurídico en Montevideo, Uruguay. Especialistas en Derecho Administrativo, Previsión Social, Recursos Humanos y Escribanía para personas y empresas.",
+  keywords: [
+    "derecho administrativo",
+    "previsión social",
+    "abogado uruguay",
+    "estudio jurídico",
+    "BPS",
+    "escribanía",
+  ],
   authors: [{ name: "Graciela Ruocco & Asociados" }],
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
     title: "Graciela Ruocco & Asociados",
-    description: "Estudio jurídico especializado en Derecho Administrativo y Previsión Social",
+    description:
+      "Estudio jurídico especializado en Derecho Administrativo, Previsión Social y Recursos Humanos",
     locale: "es_UY",
     type: "website",
   },
@@ -37,7 +46,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`antialiased ${playfair.variable} ${roboto.variable}`}>
+    <html
+      lang="es"
+      className={`antialiased ${playfair.variable} ${roboto.variable}`}
+    >
       <body>{children}</body>
     </html>
   );
