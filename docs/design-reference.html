@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <style data-omelette-injected>
+      html,
+      body {
+        background: transparent;
+      }
+    </style>
+    <script data-omelette-injected>
+      (() => {
+        var $ = [
+          "https://claude.ai",
+          "https://preview.claude.ai",
+          "https://eap-omelette.claude.ai",
+        ];
+        var F = 30000;
+        var A = 3000;
+        document.addEventListener("DOMContentLoaded", () => {
+          const Q = "transform-react-jsx-source";
+          document
+            .querySelectorAll(
+              'script[type="text/babel"],script[type="text/jsx"]'
+            )
+            .forEach((J, V) => {
+              const X = J.getAttribute("data-plugins") || "";
+              if (X.indexOf(Q) < 0) {
+                J.setAttribute("data-plugins", X ? `${X},${Q}` : Q);
+              }
+              if (!J.hasAttribute("data-filename")) {
+                J.setAttribute(
+                  "data-filename",
+                  J.getAttribute("src") || `inline-${V}`
+                );
+              }
+            });
+        });
+        var W = window.parent;
+        if (W && W !== window) {
+          const Q = (z, k) => {
+            try {
+              W.postMessage({ __omelette_log: true, type: z, data: k }, "*");
+            } catch {}
+          };
+          ["log", "warn", "error"].forEach((z) => {
+            const k = console[z];
+            console[z] = (...C) => {
+              const D = C.map((w) => {
+                try {
+                  return typeof w === "object" ? JSON.stringify(w) : String(w);
+                } catch {
+                  try {
+                    return String(w);
+                  } catch {
+                    return "[unstringifiable]";
+                  }
+                }
+              }).join(" ");
+              Q(z, D);
+              k.apply(console, C);
+            };
+          });
+          window.addEventListener(
+            "error",
+            (z) => {
+              const k = z.target;
+              if (k && k !== window && k.tagName) {
+                const C = k.src || k.href || "";
+                Q("resource_error", `${k.tagName} failed to load: ${C}`);
+              } else {
+                Q(
+                  "error",
+                  `${z.message || "Unknown error"} at ${z.filename || "?"}:${
+                    z.lineno || 0
+                  }:${z.colno || 0}`
+                );
+              }
+            },
+            true
+          );
+          window.addEventListener("unhandledrejection", (z) => {
+            const k = z.reason;
+            const C =
+              k instanceof Error ? `${k.message} ${k.stack}` : String(k);
+            Q("error", `Unhandled rejection: ${C}`);
+          });
+          const J = () => {
+            try {
+              W.postMessage(
+                {
+                  type: "omelette:height",
+                  height: document.documentElement.scrollHeight,
+                },
+                "*"
+              );
+            } catch {}
+          };
+          if (document.readyState === "complete") J();
+          else window.addEventListener("load", J);
+          if (window.ResizeObserver)
+            new ResizeObserver(J).observe(document.documentElement);
+          const V = {};
+          let X = 0;
+          window.claude = {
+            complete(z) {
+              return new Promise((k, C) => {
+                if (!$.length) {
+                  C(new Error("claude.complete: no parent origin"));
+                  return;
+                }
+                const D = `c${++X}`;
+                const w = () =>
+                  setTimeout(() => {
+                    delete V[D];
+                    C(new Error(`claude.complete: no data for ${F / 1000}s`));
+                  }, F);
+                const K = w();
+                V[D] = { resolve: k, reject: C, text: "", t: K, arm: w };
+                try {
+                  for (const Z of $) {
+                    W.postMessage({ __om_api: true, id: D, body: z }, Z);
+                  }
+                } catch (Z) {
+                  clearTimeout(K);
+                  delete V[D];
+                  C(Z);
+                }
+              });
+            },
+          };
+          const Y = {};
+          let h = 0;
+          window.omelette = {
+            writeFile: (z, k) =>
+              new Promise((C, D) => {
+                if (!$.length) {
+                  C();
+                  return;
+                }
+                const w = `f${++h}`;
+                const K = setTimeout(() => {
+                  delete Y[w];
+                  C();
+                }, A);
+                Y[w] = { resolve: C, reject: D, t: K };
+                try {
+                  for (const Z of $) {
+                    W.postMessage(
+                      {
+                        __om_file: true,
+                        id: w,
+                        op: "write",
+                        path: z,
+                        content: k,
+                      },
+                      Z
+                    );
+                  }
+                } catch {
+                  clearTimeout(K);
+                  delete Y[w];
+                  C();
+                }
+              }),
+          };
+          const b = (z) => {
+            try {
+              return JSON.stringify(z);
+            } catch {
+              return JSON.stringify(String(z));
+            }
+          };
+          window.addEventListener("message", (z) => {
+            if ($.indexOf(z.origin) < 0) return;
+            if (z.source !== W) return;
+            const k = z.data;
+            if (!k) return;
+            if (k.__om_file_r) {
+              const w = Y[k.id];
+              if (!w) return;
+              clearTimeout(w.t);
+              delete Y[k.id];
+              if (k.ok) w.resolve();
+              else w.reject(new Error(k.error || "write failed"));
+              return;
+            }
+            if (k.__om_api_r) {
+              const w = V[k.id];
+              if (!w) return;
+              if (k.error != null) {
+                clearTimeout(w.t);
+                delete V[k.id];
+                w.reject(new Error(k.error));
+                return;
+              }
+              if (k.chunk != null) {
+                clearTimeout(w.t);
+                w.t = w.arm();
+                w.text += k.chunk;
+                return;
+              }
+              if (k.done) {
+                clearTimeout(w.t);
+                delete V[k.id];
+                w.resolve(k.text != null ? k.text : w.text);
+                return;
+              }
+              return;
+            }
+            if (!k.__om_eval) return;
+            const C = k;
+            const D = (w) => {
+              z.source.postMessage(
+                { ...w, __om_eval_r: 1, id: C.id },
+                z.origin
+              );
+            };
+            try {
+              const w = (0, eval)(C.code);
+              if (w && typeof w.then === "function") {
+                w.then(
+                  (K) => D({ ok: 1, v: b(K) }),
+                  (K) => D({ ok: 0, e: String(K) })
+                );
+              } else {
+                D({ ok: 1, v: b(w) });
+              }
+            } catch (w) {
+              D({ ok: 0, e: String(w) });
+            }
+          });
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      Graciela Ruocco & Asociados — Asesoramiento Legal para Empresas
+    </title>
+    <meta
+      name="description"
+      content="Estudio jurídico en Montevideo, Uruguay. Especialistas en Derecho Administrativo y Previsión Social y recursos humanos para empresas."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+      integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+      integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+      integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --navy: #0a1628;
+        --navy-800: #0f1d33;
+        --navy-700: #14263f;
+        --ink: #111827;
+        --slate: #4a5568;
+        --slate-2: #6b7280;
+        --slate-3: #9ca3af;
+        --line: #e5e7eb;
+        --line-soft: #eef1f5;
+        --cream: #faf8f5;
+        --cream-2: #f4f0e8;
+        --paper: #ffffff;
+        --gold: #c9a96e;
+        --gold-deep: #b38f4e;
+        --focus: #0a1628;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: var(--ink);
+        font-family: "Roboto", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+      .serif {
+        font-family: "Playfair Display", "Times New Roman", serif;
+      }
+      .eyebrow {
+        font: 500 12px/1.4 "Roboto", sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font: 500 14px/1 "Roboto";
+        letter-spacing: 0.02em;
+        padding: 16px 28px;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        transition: all 0.18s ease;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: var(--navy);
+        border-color: var(--gold);
+      }
+      .btn-primary:hover {
+        background: var(--gold-deep);
+        border-color: var(--gold-deep);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+      .btn-dark {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+      .btn-dark:hover {
+        background: #05111f;
+      }
+      .link-gold {
+        color: var(--gold-deep);
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .link-gold:hover {
+        color: var(--gold);
+      }
+      input,
+      textarea,
+      select {
+        font-family: inherit;
+        font-size: 15px;
+      }
+      ::selection {
+        background: var(--gold);
+        color: var(--navy);
+      }
+
+      /* Responsive grids --------------------------------------------- */
+      .grid-nosotros-head {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 80px;
+        align-items: start;
+        margin-bottom: 64px;
+      }
+      .grid-team {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+      }
+      .team-lead {
+        grid-column: span 6;
+      }
+      .team-half {
+        grid-column: span 3;
+      }
+      .grid-services {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .grid-reason {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+      .grid-contacto {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 64px;
+      }
+      .grid-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .grid-footer {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 48px;
+        padding-bottom: 56px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .footer-bottom {
+        padding-top: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .nav-desktop {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
+      .nav-hamburger {
+        display: none;
+        background: transparent;
+        border: none;
+        padding: 8px;
+        color: inherit;
+      }
+      .section-pad {
+        padding: 128px 0;
+      }
+      .headline-xl {
+        font-size: 48px;
+      }
+      .headline-lg {
+        font-size: 44px;
+      }
+      .headline-hero {
+        font-size: clamp(42px, 5.6vw, 76px);
+      }
+      .hero-pill-text {
+        font-size: 11px;
+      }
+      .faq-q {
+        font-size: 20px;
+        padding: 28px 4px;
+      }
+      .faq-a {
+        padding: 0 60px 28px 4px;
+      }
+      .faq-cta {
+        padding: 32px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .form-card {
+        padding: 40px;
+      }
+
+      @media (max-width: 900px) {
+        .container {
+          padding: 0 24px;
+        }
+        .grid-nosotros-head {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          margin-bottom: 48px;
+        }
+        .grid-team {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .team-lead,
+        .team-half {
+          grid-column: span 1;
+        }
+        .grid-services {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .grid-reason {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .grid-contacto {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .grid-form {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .grid-form > [data-span2] {
+          grid-column: span 1 !important;
+        }
+        .grid-footer {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          padding-bottom: 40px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+        .section-pad {
+          padding: 72px 0;
+        }
+        .headline-xl {
+          font-size: 34px;
+          line-height: 1.15;
+        }
+        .headline-lg {
+          font-size: 30px;
+          line-height: 1.15;
+        }
+        .headline-hero {
+          font-size: 38px;
+          line-height: 1.1;
+        }
+        .hero-pill-text {
+          font-size: 10px;
+          letter-spacing: 0.14em !important;
+        }
+        .hero-pill-text-wrap {
+          padding: 7px 14px !important;
+        }
+        .faq-q {
+          font-size: 16px;
+          padding: 22px 4px;
+        }
+        .faq-a {
+          padding: 0 10px 22px 4px;
+          font-size: 14px !important;
+        }
+        .faq-cta {
+          padding: 24px 22px;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+        .form-card {
+          padding: 28px 22px;
+        }
+        .nav-desktop {
+          display: none;
+        }
+        .nav-hamburger {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .hide-mobile {
+          display: none !important;
+        }
+        .stat-strip {
+          margin-top: 44px !important;
+          grid-template-columns: 1fr !important;
+        }
+        .stat-cell {
+          border-right: none !important;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .stat-cell:last-child {
+          border-bottom: none;
+        }
+        .hero-section {
+          min-height: auto !important;
+          height: auto !important;
+          max-height: none !important;
+          padding: 120px 0 72px !important;
+        }
+        .hero-buttons {
+          width: 100%;
+        }
+        .hero-buttons .btn {
+          flex: 1;
+          justify-content: center;
+        }
+        .nosotros-badges {
+          flex-wrap: wrap;
+          gap: 14px 20px !important;
+        }
+        .porque-ring {
+          display: none;
+        }
+        .reason-row {
+          padding: 24px 0 !important;
+        }
+        .reason-n {
+          font-size: 36px !important;
+        }
+        .reason-title {
+          font-size: 20px !important;
+        }
+        .reason-desc {
+          font-size: 14px !important;
+        }
+        .team-card {
+          padding: 20px !important;
+          gap: 14px !important;
+        }
+        .service-card {
+          padding: 28px 24px !important;
+        }
+        .form-cta button {
+          padding: 16px 20px !important;
+        }
+        .header-brand-small {
+          font-size: 18px !important;
+        }
+        .header-brand-sub {
+          font-size: 10px !important;
+        }
+      }
+      @media (max-width: 420px) {
+        .container {
+          padding: 0 18px;
+        }
+        .headline-xl {
+          font-size: 28px;
+        }
+        .headline-hero {
+          font-size: 32px;
+        }
+        .faq-q {
+          font-size: 15px;
+        }
+      }
+
+      /* Mobile drawer */
+      .drawer {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        pointer-events: none;
+      }
+      .drawer.open {
+        pointer-events: auto;
+      }
+      .drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 22, 40, 0.5);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        z-index: 60;
+      }
+      .drawer.open .drawer-overlay {
+        opacity: 1;
+      }
+      .drawer-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(320px, 86vw);
+        background: #fff;
+        padding: 80px 28px 32px;
+        transform: translateX(100%);
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        box-shadow: -8px 0 30px -10px rgba(10, 22, 40, 0.2);
+        z-index: 61;
+      }
+      .drawer.open .drawer-panel {
+        transform: translateX(0);
+      }
+      .drawer a {
+        padding: 16px 0;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--navy);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .drawer a:last-of-type {
+        border-bottom: none;
+      }
+      .drawer-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        color: var(--navy);
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      // TWEAKS default config
+      const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
+        accent: "gold",
+        heroVariant: "photo",
+        showSeal: true,
+        faqOpen: 0,
+      }; /*EDITMODE-END*/
+      window.TWEAK_DEFAULTS = TWEAK_DEFAULTS;
+    </script>
+
+    <script type="text/babel" src="./app/icons.jsx"></script>
+    <script type="text/babel" src="./app/sections-top.jsx"></script>
+    <script type="text/babel" src="./app/sections-mid.jsx"></script>
+    <script type="text/babel" src="./app/sections-bot.jsx"></script>
+    <script type="text/babel" src="./app/tweaks.jsx"></script>
+    <script type="text/babel" src="./app/main.jsx"></script>
+  </body>
+</html>
