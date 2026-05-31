@@ -9,25 +9,25 @@ interface FaqItem {
 }
 
 const FAQS: FaqItem[] = [
-  {
-    q: '¿Cuáles son las obligaciones previsionales ante el BPS en Uruguay?',
-    a: 'En Uruguay, los empleadores deben realizar aportes al BPS (Banco de Previsión Social) sobre las remuneraciones de sus trabajadores, incluyendo aportes patronales, personales y contribuciones especiales. Asesoramos tanto a empresas como a personas en el correcto cumplimiento y optimización de esta carga.',
-  },
+  // {
+  //   q: '¿Cuáles son las obligaciones previsionales ante el BPS en Uruguay?',
+  //   a: 'En Uruguay, los empleadores deben realizar aportes al BPS (Banco de Previsión Social) sobre las remuneraciones de sus trabajadores, incluyendo aportes patronales, personales y contribuciones especiales. Asesoramos tanto a empresas como a personas en el correcto cumplimiento y optimización de esta carga.',
+  // },
   {
     q: '¿Qué servicios de escribanía suelen necesitar los clientes del estudio?',
-    a: 'Nuestros clientes requieren servicios notariales para la constitución de sociedades, reformas de estatutos, poderes, compraventas de inmuebles y automotores, contratos, cesiones y certificaciones de firma. Cubrimos toda la documentación notarial necesaria.',
+    a: 'Nuestros clientes requieren asesoramiento y servicios notariales para la constitución de sociedades, reformas de estatutos, poderes, compraventa de inmuebles y automotores, hipotecas, prendas, contratos en general, cesiones, certificaciones de firma y testimonios notariales. Elaboramos toda la documentación notarial requerida de acuerdo a las necesidades del cliente en virtud del negocio jurídico proyectado.',
   },
   {
     q: '¿Cómo puedo impugnar una resolución administrativa?',
-    a: 'En Uruguay existen recursos administrativos (revocación, jerárquico, de anulación) y la acción de nulidad ante el TCA. Evaluamos cada caso y diseñamos la estrategia legal más adecuada según plazos y probabilidades.',
+    a: 'En Uruguay, ante un acto administrativo, dentro del plazo de 10 días hábiles desde su notificación o publicación, se pueden interponer los recursos administrativos, según el caso, de revocación, jerárquico y de anulación. Y luego iniciar la acción de nulidad ante el sistema contencioso anulatorio, según el tipo de acto. Evaluamos cada caso y diseñamos la estrategia legal más adecuada según plazos y probabilidades.',
   },
-  {
-    q: '¿Cuándo conviene contar con asesoramiento legal continuo?',
-    a: 'Cuando usted o su empresa tiene relaciones frecuentes con el Estado, empleados bajo distintos regímenes, contratos habituales o riesgos regulatorios, un asesoramiento legal continuo previene conflictos y reduce costos a largo plazo.',
-  },
+  // {
+  //   q: '¿Cuándo conviene contar con asesoramiento legal continuo?',
+  //   a: 'Cuando usted o su empresa tiene relaciones frecuentes con el Estado, empleados bajo distintos regímenes, contratos habituales o riesgos regulatorios, un asesoramiento legal continuo previene conflictos y reduce costos a largo plazo.',
+  // },
   {
     q: '¿Cómo es el proceso para comenzar a trabajar con el estudio?',
-    a: 'El proceso es simple: complete el formulario de contacto o escríbanos por email. Coordinamos una reunión inicial sin costo para entender su necesidad, y luego presentamos una propuesta de trabajo clara y acotada.',
+    a: 'El proceso es simple: complete el formulario de contacto o escríbanos por email. Coordinamos una reunión inicial para entender su necesidad, y luego presentamos una propuesta de trabajo clara y acotada.',
   },
 ];
 

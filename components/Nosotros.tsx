@@ -15,21 +15,21 @@ interface TeamMember {
 const TEAM: TeamMember[] = [
   {
     name: "Graciela Ruocco",
-    role: "Catedrática de Derecho Administrativo",
-    bio: "Profesora Titular de Posgrado de Derecho Administrativo de la Facultad de Derecho de la Universidad Católica del Uruguay. Profesora Titular de Derecho Público de la Facultad de Derecho de la Universidad de la República. Directora del Instituto de Derecho Administrativo de la misma universidad (2021-2023). Máster en Derecho con énfasis en Derecho Constitucional y Derechos Humanos. Miembro del Foro Iberoamericano de Derecho Administrativo, de la Asociación de Derecho Público del Mercosur, de la Red Internacional de Bienes Públicos, del Instituto Internacional de Derecho Administrativo y del Centro Iberoamericano de Estudios de Derecho Público y Tecnología. Abogada I de la Dirección Jurídica del Poder Legislativo (1994-2019).",
+    role: "Doctora en Derecho y Ciencias Sociales · Catedrática de Derecho Administrativo",
+    bio: "Profesora Titular de Posgrado de Derecho Administrativo de la Facultad de Derecho de la Universidad Católica del Uruguay. Profesora Titular de Derecho Público de la Facultad de Derecho de la Universidad de la República. Directora del Instituto de Derecho Administrativo de la misma universidad (2021-2023). Máster en Derecho con énfasis en Derecho Constitucional y Derechos Humanos. Miembro del Foro Iberoamericano de Derecho Administrativo, de la Asociación de Derecho Público del Mercosur, de la Red Internacional de Bienes Públicos, del Instituto Internacional de Derecho Administrativo y del Centro Iberoamericano de Estudios de Derecho Público y Tecnología. Abogada I de la Dirección Jurídica del Poder Legislativo (1994-2019). Consultora especializada en Derecho Público y litigación en la materia.",
     img: "/graciela_ruocco.jpg",
     lead: true,
   },
   {
     name: "Victoria Frigerio Ruocco",
-    role: "Abogada y Escribana",
-    bio: "Doble titulación en Derecho y Escribanía. Especialista en documentación corporativa, contratos y trámites notariales para empresas.",
+    role: "Doctora en Derecho y Ciencias Sociales · Escribana",
+    bio: "Doble titulación en Derecho y Escribanía. Especialista en documentación corporativa, contratos y trámites notariales para empresas. Asesoramiento integral en el proceso de formación jurídica de la voluntad negocial del cliente y los actos que requieren documentación notarial. Vasta experiencia en materia de Familia, Laboral y Arrendamientos.",
     img: "/victoria_frigerio_ruocco.jpg",
   },
   {
     name: "Adriana Laurito",
-    role: "Abogada",
-    bio: "Abogada con sólida formación en derecho público y privado. Enfocada en la atención integral de clientes corporativos y resolución de conflictos.",
+    role: "Doctora en Derecho y Ciencias Sociales",
+    bio: "Abogada con sólida formación en derecho público y privado. Con énfasis en Derecho de Familia, Laboral y Aeronáutico. Vasta experiencia en asuntos tales como sucesiones, divorcios, uniones concubinarias, despidos, arrendamientos y reclamos por faltantes o averías de carga aérea. Enfocada en la atención integral de clientes corporativos y resolución de conflictos.",
     img: "/adriana_laurito.jpeg",
   },
 ];

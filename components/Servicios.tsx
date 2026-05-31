@@ -64,6 +64,8 @@ const SERVICES: Service[] = [
     bullets: [
       "Derecho Administrativo",
       "Previsión Social",
+      "Materia Laboral",
+      "Derecho de Familia",
       "Recursos Humanos",
       "Escribanía",
     ],
