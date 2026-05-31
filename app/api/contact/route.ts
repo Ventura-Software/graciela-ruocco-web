@@ -3,8 +3,60 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Rate limiting en memoria (por IP).
+// Nota: en serverless (Vercel) el estado vive por instancia y se reinicia en
+// cold starts, así que es una primera capa contra ráfagas, no una garantía
+// distribuida. Para algo más robusto migrar a Upstash Redis.
+const RATE_LIMIT_MAX = 5; // envíos permitidos...
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // ...cada 10 minutos por IP
+const ipHits = new Map<string, number[]>();
+
+function getClientIp(request: Request): string {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    // x-forwarded-for puede traer "cliente, proxy1, proxy2" — usamos el primero
+    return forwarded.split(",")[0].trim();
+  }
+  return request.headers.get("x-real-ip")?.trim() || "unknown";
+}
+
+// Devuelve true si la IP superó el límite. Limpia los timestamps vencidos.
+function isRateLimited(ip: string, now: number): boolean {
+  const windowStart = now - RATE_LIMIT_WINDOW_MS;
+  const hits = (ipHits.get(ip) || []).filter((t) => t > windowStart);
+
+  if (hits.length >= RATE_LIMIT_MAX) {
+    ipHits.set(ip, hits);
+    return true;
+  }
+
+  hits.push(now);
+  ipHits.set(ip, hits);
+
+  // Limpieza oportunista para que el Map no crezca indefinidamente
+  if (ipHits.size > 5000) {
+    for (const [key, times] of ipHits) {
+      if (times.every((t) => t <= windowStart)) ipHits.delete(key);
+    }
+  }
+
+  return false;
+}
+
 export async function POST(request: Request) {
   try {
+    // Rate limiting por IP antes de procesar nada
+    const ip = getClientIp(request);
+    if (isRateLimited(ip, Date.now())) {
+      return NextResponse.json(
+        {
+          error:
+            "Demasiados envíos. Por favor esperá unos minutos antes de volver a intentar.",
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { nombre, empresa, email, telefono, area, mensaje, website } = body;
 
